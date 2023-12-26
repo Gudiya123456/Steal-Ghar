@@ -35,7 +35,7 @@ const Login = ({ navigation }) => {
     try {
 alert('kkkk')
       const token = await AsyncStorage.getItem('token');
-    alert(token)
+    // alert(token)
 
       if (token !== null) {
         // We have data!!
