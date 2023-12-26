@@ -1,7 +1,7 @@
 import { SafeAreaView } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "./Home";
+import Home1 from "./Home1";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
@@ -14,21 +14,20 @@ import Account from "./Account";
 import Navbar from "./Navbar";
 import Notification from "./Notification";
 import DrawerNavigation from "./DrawerNavigation";
-import Homestack from "./Homestack";
 
 const TabNavigation = () => {
   const tab = createBottomTabNavigator();
   return (
-    <NavigationContainer>
-      <SafeAreaView style={{ flex: 1 }}>
+    <NavigationContainer independent={true}>
+      {/* <SafeAreaView style={{ flex: 1 }}> */}
         <StatusBar style="dark" />
         {/* <Navbar /> */}
         <tab.Navigator>
           <tab.Screen
-            name="Home"
-            component={Homestack}
+            name="Home1"
+            component={Home1}
             options={{
-              tabBarLabel: "Home",
+              tabBarLabel: "Home1",
               headerShown: false,
               tabBarIcon: ({ color, size }) => (
                 <MaterialCommunityIcons name="home" color={color} size={size} />
@@ -44,12 +43,6 @@ const TabNavigation = () => {
               tabBarIcon: ({ color, size }) => (
                 <MaterialIcons name="category" size={size} color={color} />
               ),
-            }}
-            listeners={({ navigation }) => {
-              tabPress = (e) => {
-                e.preventDefault();
-                navigation.navigate("Category");
-              };
             }}
           />
           <tab.Screen
@@ -83,7 +76,7 @@ const TabNavigation = () => {
             }}
           />
         </tab.Navigator>
-      </SafeAreaView>
+      {/* </SafeAreaView> */}
     </NavigationContainer>
   );
 };

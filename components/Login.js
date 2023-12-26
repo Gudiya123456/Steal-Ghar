@@ -43,10 +43,10 @@ const Login = ({ navigation }) => {
   const Auth=()=>{
   if(!auth)
   {
-    navigation.navigate('OTP')
+    navigation.navigate('Home')
   }
   else{
-    navigation.navigate("Home")
+    navigation.navigate("OTP")
   }
 }
   return (

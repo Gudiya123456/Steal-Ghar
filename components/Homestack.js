@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import React, { useState } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "./Home";
+import Home from "./Home1";
 
 import Wishlist from "./Wishlist";
 import Cart from "./Cart";

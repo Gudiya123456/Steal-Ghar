@@ -19,7 +19,7 @@ import { perfectSize } from "./Login";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
-const Otp = () => {
+const Otp = ({navigation}) => {
   let [fontsLoaded] = useFonts({
     Montserrat_500Medium,
     Montserrat_600SemiBold,
@@ -63,7 +63,10 @@ const Otp = () => {
               marginBottom: perfectSize(25),
             }}
           >
-            <TouchableOpacity style={style.button}>
+            <TouchableOpacity style={style.button}
+            onPress={() => navigation.navigate("Home")}
+            >
+
               <Text style={style.button.text}>SUBMIT</Text>
             </TouchableOpacity>
           </View>
