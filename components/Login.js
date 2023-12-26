@@ -33,7 +33,7 @@ const Login = ({ navigation }) => {
   checkAuth = async () => {
     setLoading(true);
     try {
-
+alert('kkkk')
       const token = await AsyncStorage.getItem('token');
     alert(token)
 
