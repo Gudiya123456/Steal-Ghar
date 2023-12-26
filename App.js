@@ -13,19 +13,29 @@ import HorizontalImageScroller from "./components/Category";
 import YourComponent from "./components/Category";
 import LeftMenu from "./components/LeftMenu";
 import DrawerNavigation from "./components/DrawerNavigation";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <>
+    <NavigationContainer independent={true}>
+     <Stack.Navigator screenOptions={{headerShown:false}} >
+      <Stack.Screen name="Login page" component={Login} />
+      <Stack.Screen name="OTP" component={Otp} />
+      <Stack.Screen name="Home" component={Home} />
+    </Stack.Navigator>
+    </NavigationContainer>
       {/* <Login /> */}
       {/* <FabricatorRegistrations /> */}
       {/* <Signup /> */}
       {/* <Otp /> */}
-      <SafeAreaView style={{ flex: 1 }}>
-        <TabNavigation />
+      {/* <SafeAreaView style={{ flex: 1 }}> */}
+        {/* <TabNavigation /> */}
         {/* <DrawerNavigation /> */}
         {/* <LeftMenu /> */}
-      </SafeAreaView>
+      {/* </SafeAreaView> */}
       {/* {/* <StatusBar style="dark" /> */}
     </>
   );

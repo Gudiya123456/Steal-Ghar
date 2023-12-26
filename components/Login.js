@@ -23,6 +23,7 @@ export const PerfectFixSize = {
   width: 414,
   height: 896,
 };
+const auth=true;
 
 export const perfectSize = create(PerfectFixSize);
 const Login = ({ navigation }) => {
@@ -35,6 +36,19 @@ const Login = ({ navigation }) => {
   if (!fontsLoaded) {
     return null;
   }
+
+  if (!fontsLoaded) {
+    return null;
+  }
+  const Auth=()=>{
+  if(!auth)
+  {
+    navigation.navigate('OTP')
+  }
+  else{
+    navigation.navigate("Home")
+  }
+}
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "red" }}>
       <StatusBar style="light" />
@@ -58,7 +72,7 @@ const Login = ({ navigation }) => {
         <View style={{ marginTop: perfectSize(35) }}>
           <TouchableOpacity
             style={style.button}
-            onPress={() => navigation.navigate("otp")}
+            onPress={() => Auth()}
           >
             <Text style={style.button.text}>Get OTP</Text>
           </TouchableOpacity>
