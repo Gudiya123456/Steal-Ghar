@@ -25,8 +25,11 @@ export default function App() {
       <Stack.Screen name="Login page" component={Login} />
       <Stack.Screen name="OTP" component={Otp} />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Signup" component={Signup} />
+
     </Stack.Navigator>
     </NavigationContainer>
+
       {/* <Login /> */}
       {/* <FabricatorRegistrations /> */}
       {/* <Signup /> */}

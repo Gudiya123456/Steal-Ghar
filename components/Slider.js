@@ -6,38 +6,40 @@ import React, { useState } from "react";
 import Carousel, { Pagination } from "react-native-snap-carousel";
 export const { width } = Dimensions.get("window");
 
-const ImageCarousel = () => {
+const ImageCarousel = (props) => {
   const [activeSlide, setActiveSlide] = useState(0);
-  const data = [
-    { id: 1, image: require("../assets/slider.jpg") },
-    { id: 2, image: require("../assets/8mm.jpg") },
-    { id: 3, image: require("../assets/20mm.png") },
-    { id: 4, image: require("../assets/16mm.png") },
+  // const data = [
+  //   { id: 1, image: require("../assets/slider.jpg") },
+  //   { id: 2, image: require("../assets/8mm.jpg") },
+  //   { id: 3, image: require("../assets/20mm.png") },
+  //   { id: 4, image: require("../assets/16mm.png") },
 
-    // Add more images as needed
-  ];
+  //   // Add more images as needed
+  // ];
 
   const renderItem = ({ item }) => (
+   
     <View style={styles.slide}>
-      <Image source={item.image} style={styles.image} />
+     
+      <Image source={{uri:`https://sourcefilesolutions.com/steelghar/console/public/storage/${item.mobile_banner}`}}  style={styles.image} />
     </View>
   );
 
   return (
     <View>
       <Carousel
-        data={data}
+        data={props.banners}
         renderItem={renderItem}
         sliderWidth={width}
         itemWidth={width}
         autoplay={true}
         autoplayDelay={5000}
-        autoplayInterval={5000}
+        autoplayInterval={2500}
         onSnapToItem={(index) => setActiveSlide(index)}
         loop={true}
       />
       <Pagination
-        dotsLength={data.length}
+        dotsLength={props.banners.length}
         activeDotIndex={activeSlide}
         containerStyle={{
           position: "absolute",

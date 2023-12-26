@@ -9,7 +9,7 @@ import {
 } from "@expo-google-fonts/montserrat";
 
 import { AntDesign } from "@expo/vector-icons";
-const LatestProducts = () => {
+const LatestProducts = (props) => {
   let [fontsLoaded] = useFonts({
     Montserrat_500Medium,
     Montserrat_600SemiBold,
@@ -19,32 +19,7 @@ const LatestProducts = () => {
   if (!fontsLoaded) {
     return null;
   }
-  const data = [
-    {
-      id: 1,
-      image: require("../assets/20mm.png"),
-      name: "20mm_rebars",
-      price: "56,876.00",
-    },
-    {
-      id: 2,
-      image: require("../assets/8mm.jpg"),
-      name: "8mm_rebars ",
-      price: "58,056.00",
-    },
-    {
-      id: 3,
-      image: require("../assets/16mm.png"),
-      name: "16mm_rebars",
-      price: "56,876.00",
-    },
-    {
-      id: 4,
-      image: require("../assets/32mm.png"),
-      name: "32mm_rebars",
-      price: "58,056.00",
-    },
-  ];
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -53,15 +28,15 @@ const LatestProducts = () => {
       </View>
 
       <View style={styles.cardcontainer}>
-        {data.map((item) => {
+        {props.products.map((item) => {
           return (
             <View style={styles.cards} key={item.id}>
               <View style={{ height: perfectSize(143) }}>
-                <Image source={item.image} style={styles.logo} />
+                <Image source={{uri:`https://sourcefilesolutions.com/steelghar/console/public/storage/${item.product_image}`}}  style={styles.logo} />
               </View>
 
               <View style={{ flex: 1, marginVertical: perfectSize(12) }}>
-                <Text style={styles.cards.text}>{item.name}</Text>
+                <Text style={styles.cards.text}>{item.product_name}</Text>
                 <View style={styles.price}>
                   <Text
                     style={[
@@ -71,7 +46,7 @@ const LatestProducts = () => {
                   >
                     Starts From
                   </Text>
-                  <Text style={[styles.cards.text]}>₹ {item.price}</Text>
+                  <Text style={[styles.cards.text]}>₹ 5500</Text>
                 </View>
               </View>
             </View>

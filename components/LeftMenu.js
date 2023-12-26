@@ -16,6 +16,8 @@ import {
 } from "@expo-google-fonts/montserrat";
 
 const LeftMenu = (props) => {
+
+  
   let [fontsLoaded] = useFonts({
     Montserrat_500Medium,
     Montserrat_600SemiBold,

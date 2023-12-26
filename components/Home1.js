@@ -1,5 +1,5 @@
-import { StyleSheet, Image, Text, View } from "react-native";
-import React, { useState } from "react";
+import { StyleSheet, Image, Text, View, Button } from "react-native";
+import React, { useEffect, useState } from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import LeftMenu from "./LeftMenu";
 import RightItems from "./RightItems";
@@ -7,17 +7,63 @@ import { perfectSize } from "./Login";
 import HomeContent from "./HomeContent";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import axios from "axios";
 
 const Home = ({ navigation }) => {
   const [cart, setCart] = useState();
   const [wishlist, setWishlist] = useState();
   const drawer = createDrawerNavigator();
+
+  // await AsyncStorage.getItem('token');
+
+  const [isLoading,setIsLoading]=useState(true);
+  const[products,setProducts]=useState([]);
+  const[banners,setBanners]=useState([]);
+  const[brands,setBrands]=useState([]);
+  const fetchHomeData=async ()=>{
+
+    setIsLoading(true)
+
+    // let token =await AsyncStorage.getItem('token');
+    // token?token=token:token="guest user";
+
+    try {
+      const response = await axios({
+            method: 'post',
+            url: "https://sourcefilesolutions.com/steelghar/console/api/home-data",
+           
+            headers: {
+                "Content-Type": "multipart/form-data",
+                // Authorization: 'Bearer ' + crmToken,
+            },
+        });
+
+if(response.data.status=="success"){
+  console.log(444444444)
+  const homeData=response.data.homeData;
+  setProducts(homeData.latestProducts)
+  setBanners(homeData.banners)
+  setBrands(homeData.brands)
+}
+
+
+    } catch (error) {
+      console.log(error)
+    }finally{
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(()=>{
+    fetchHomeData();
+  },[])
   return (
     <>
       <drawer.Navigator drawerContent={(props) => <LeftMenu {...props} />}>
         <drawer.Screen
           name="Sample"
-          component={HomeContent}
+          component={()=><HomeContent banners={banners} products={products} brands={brands}/>}
+          
           options={{
             headerRight: () => (
               // <Text onPress={() => navigation.navigate("Wishlist")}>Hello</Text>
@@ -31,6 +77,10 @@ const Home = ({ navigation }) => {
                   style={{ marginRight: perfectSize(15) }}
                   onPress={() => navigation.navigate("Cart")}
                 />
+                  <View>
+                    <Button onPress={ fetchHomeData
+                    } title="vnngn" />
+                  </View>
                 {cart && (
                   <View
                     style={{
@@ -93,6 +143,10 @@ const Home = ({ navigation }) => {
                     >
                       0
                     </Text>
+                  <View>
+                    <Button title="vnngn" />
+                  </View>
+
                   </View>
                 )}
               </View>

@@ -20,7 +20,9 @@ import LatestProducts from "./LatestProducts";
 import Brand from "./Brand";
 import HomeCatogory from "./HomeCatogory";
 
-const HomeContent = () => {
+const HomeContent = (props) => {
+  
+  console.log(props.banners)
   let [fontsLoaded] = useFonts({
     Montserrat_500Medium,
     Montserrat_600SemiBold,
@@ -41,9 +43,9 @@ const HomeContent = () => {
             <EvilIcons name="search" size={24} color="black" />
           </TouchableOpacity>
         </View>
-        <MyCarousel />
-        <LatestProducts />
-        <Brand />
+        <MyCarousel banners={props.banners}/>
+        <LatestProducts products={props.products}/>
+        <Brand brands={props.brands}/>
         <HomeCatogory />
       </View>
     </ScrollView>
