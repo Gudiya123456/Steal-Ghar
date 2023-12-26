@@ -6,8 +6,9 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { create } from "react-native-pixel-perfect";
+import {AsyncStorage} from 'react-native';
 import {
   useFonts,
   Montserrat_500Medium,
@@ -19,6 +20,7 @@ import { Feather } from "@expo/vector-icons";
 
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
+import Loader from "./Loader";
 export const PerfectFixSize = {
   width: 414,
   height: 896,
@@ -27,6 +29,37 @@ const auth=true;
 
 export const perfectSize = create(PerfectFixSize);
 const Login = ({ navigation }) => {
+  const [loading,setLoading]=useState(true);
+  checkAuth = async () => {
+    setLoading(true);
+    try {
+
+      const token = await AsyncStorage.getItem('token');
+    alert(token)
+
+      if (token !== null) {
+        // We have data!!
+        console.log(token);
+        navigation.navigate('Home')
+        alert("mjkk")
+      }
+      else{
+        console.log("no token")
+        alert("mjkk")
+
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+    finally{
+      setLoading(false);
+    }
+  };
+
+  useEffect( ()=>{
+    checkAuth();
+  },[])
+
   let [fontsLoaded] = useFonts({
     Montserrat_500Medium,
     Montserrat_600SemiBold,
@@ -50,7 +83,10 @@ const Login = ({ navigation }) => {
   }
 }
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "red" }}>
+   <>
+   {
+    loading ? <Loader/>:(
+      <SafeAreaView style={{ flex: 1, backgroundColor: "red" }}>
       <StatusBar style="light" />
       <View style={style.header}>
         <Image
@@ -79,8 +115,12 @@ const Login = ({ navigation }) => {
         </View>
       </View>
     </SafeAreaView>
+    )
+   }
+   </>
   );
-};
+    }
+
 
 export default Login;
 const style = StyleSheet.create({
